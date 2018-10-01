@@ -67,6 +67,7 @@ public class ViewCount extends AppCompatActivity {
         joy_count.setText(Integer.toString(joy));
         TextView surprise_count = findViewById(R.id.count_surprise);
         surprise_count.setText(Integer.toString(surprise));
+        
         TextView anger_count = findViewById(R.id.count_anger);
         anger_count.setText(Integer.toString(anger));
         TextView sadness_count = findViewById(R.id.count_sadness);

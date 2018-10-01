@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FeelsBook</string>
+    <string name="button_love">Love</string>
+    <string name="button_joy">Joy</string>
+    <string name="button_surprise">Surprise</string>
+    <string name="button_anger">Anger</string>
+    <string name="button_sadness">Sadness</string>
+    <string name="button_fear">Fear</string>
+    <string name="button_comment">Add</string>
+    <string name="text_comment">Enter Comment Here</string>
+    <string name="record_added">Emotion Added</string>
+    <string name="button_count">Count</string>
+    <string name="button_history">History</string>
+
+</resources>

@@ -7,9 +7,11 @@
     <string name="button_sadness">Sadness</string>
     <string name="button_fear">Fear</string>
     <string name="button_comment">Add</string>
+    <string name="button_update">Update</string>
     <string name="text_comment">Enter Comment Here</string>
     <string name="record_added">Emotion Added</string>
     <string name="button_count">Count</string>
     <string name="button_history">History</string>
+    <string name="button_delete">Delete</string>
 
 </resources>

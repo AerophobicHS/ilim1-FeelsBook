@@ -25,6 +25,15 @@ public class ViewHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_history);
 
+    }
+
+    @Override
+    // SAVES STATE WHEN APP CLOSES
+    public void onStart() {
+
+        // SUPER CLASS CALL
+        super.onStart();
+
         // GET EMOTION ARRAY FROM MAIN ACTIVITY
         emotions = (ArrayList<Emotion>) getIntent().getSerializableExtra(EXTRA_MESSAGE);
         ListView emotion_list = findViewById(R.id.emotionView);
@@ -76,6 +85,5 @@ public class ViewHistory extends AppCompatActivity {
         }
 
     }
-
 
 }

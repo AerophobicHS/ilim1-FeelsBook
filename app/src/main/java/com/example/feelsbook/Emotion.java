@@ -5,11 +5,11 @@ import java.io.Serializable;
 // THE EMOTION CLASS THAT SETS AND GETS EMOTION PROPERTIES
 public class Emotion implements Serializable{
 
-    public String emotion;
-    public String comment;
-    public String date;
+    private String emotion;
+    private String comment;
+    private String date;
 
-    public Emotion(String emotion, String date, String comment) {
+    Emotion(String emotion, String date, String comment) {
         this.emotion = emotion;
         this.date = date;
         this.comment = comment;
@@ -33,6 +33,5 @@ public class Emotion implements Serializable{
     public String getDate(){
         return this.date;
     }
-
 
 }

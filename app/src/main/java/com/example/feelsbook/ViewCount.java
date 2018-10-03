@@ -20,6 +20,7 @@ public class ViewCount extends AppCompatActivity{
 
     @Override
     public void onStart() {
+
         super.onStart();
         ArrayList<Emotion> emotions;
         emotions = (ArrayList<Emotion>) getIntent().getSerializableExtra(EXTRA_MESSAGE);

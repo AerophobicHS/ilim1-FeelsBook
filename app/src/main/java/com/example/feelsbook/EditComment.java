@@ -23,8 +23,18 @@ public class EditComment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_comment);
+
+    }
+
+    @Override
+    // SAVES STATE WHEN APP CLOSES
+    public void onStart() {
+
+        // SUPER CLASS CALL
+        super.onStart();
 
         // GET SELECTED EMOTION FROM HISTORY ACTIVITY
         Emotion emotion = (Emotion) getIntent().getSerializableExtra(EXTRA_MESSAGE);
@@ -36,10 +46,9 @@ public class EditComment extends AppCompatActivity {
         emotionDate.setText(emotion.getDate());
         EditText emotionComment = findViewById(R.id.text_comment);
         emotionComment.setText(emotion.getComment());
-
     }
 
-    // RETURNS EDITED EMOTION DATA
+        // RETURNS EDITED EMOTION DATA
     public void returnEmotion(View view){
 
         // GETTING UPDATED EMOTION, DATE, AND COMMENT FROM LAYOUT

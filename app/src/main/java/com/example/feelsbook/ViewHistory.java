@@ -15,7 +15,7 @@ public class ViewHistory extends AppCompatActivity {
 
     // INITIALIZE
     public static final String EXTRA_MESSAGE = "com.example.android.feelsbook.extra.MESSAGE";
-    public static final int TEXT_REQUEST = 1;
+    public static final int TEXT_REQUEST2 = 2;
     public int emotionPosition;
     public ArrayList<Emotion> emotions;
 
@@ -41,7 +41,7 @@ public class ViewHistory extends AppCompatActivity {
                 Intent editIntent = new Intent(view.getContext(), EditComment.class);
                 editIntent.putExtra(EXTRA_MESSAGE, emotions.get(emotionPosition));
                 emotions.remove(emotionPosition);
-                startActivityForResult(editIntent, TEXT_REQUEST);
+                startActivityForResult(editIntent, TEXT_REQUEST2);
 
             }
 
@@ -53,7 +53,7 @@ public class ViewHistory extends AppCompatActivity {
     // GETS EMOTION FROM EDIT COMMENT ACTIVITY AND UPDATES ARRAY
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == TEXT_REQUEST){
+        if(requestCode == TEXT_REQUEST2){
 
             if(resultCode == RESULT_OK){
 
@@ -64,7 +64,12 @@ public class ViewHistory extends AppCompatActivity {
                 if (!"".equals(emotion.getEmotion())) {
                     emotions.add(emotionPosition, emotion);
                 }
-                
+
+                // CREATE INTENT AND SEND TO MAIN ACTIVITY
+                Intent updateIntent = new Intent();
+                updateIntent.putExtra(EXTRA_MESSAGE, emotions);
+                setResult(RESULT_OK, updateIntent);
+                finish();
 
             }
 

@@ -18,9 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static final String EXTRA_MESSAGE = "com.example.android.feelsbook.extra.MESSAGE";
-    public static final int TEXT_REQUEST = 1;
+    public static final int TEXT_REQUEST1 = 1;
+    public static final int TEXT_REQUEST2 = 2;
+
     public TextView added_record;
     public ArrayList<Emotion> emotionArray = new ArrayList<>();
+    public ArrayList<Emotion> updatedArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -36,18 +39,38 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == TEXT_REQUEST){
+        switch (requestCode) {
 
-            if(resultCode == RESULT_OK){
+            case TEXT_REQUEST1:
 
-                Emotion emotion = (Emotion) data.getSerializableExtra(AddComment.EXTRA_REPLY);
-                emotionArray.add(emotion);
-                added_record.setVisibility(View.VISIBLE);
-                // Log.d(LOG_TAG, emotion.getComment());
+                if(resultCode == RESULT_OK){
 
-            }
+                    Emotion emotion = (Emotion) data.getSerializableExtra(AddComment.EXTRA_REPLY);
+                    emotionArray.add(emotion);
+                    added_record.setVisibility(View.VISIBLE);
+
+                }
+
+                break;
+
+            case TEXT_REQUEST2:
+
+                if(resultCode == RESULT_OK){
+
+                    updatedArray = (ArrayList<Emotion>) data.getSerializableExtra(ViewHistory.EXTRA_MESSAGE);
+
+                }
+
+                emotionArray = updatedArray;
+                break;
+
+            default:
+
+                break;
+
 
         }
+
 
     }
 
@@ -57,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         String buttonText = button.getText().toString();
         Intent intent = new Intent(this, AddComment.class);
         intent.putExtra(EXTRA_MESSAGE, buttonText);
-        startActivityForResult(intent, TEXT_REQUEST);
+        startActivityForResult(intent, TEXT_REQUEST1);
 
     }
 
@@ -65,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent historyIntent = new Intent(this, ViewHistory.class);
         historyIntent.putExtra(EXTRA_MESSAGE, emotionArray);
-        startActivity(historyIntent);
+        startActivityForResult(historyIntent, TEXT_REQUEST2);
 
     }
 

@@ -5,16 +5,22 @@ import java.io.Serializable;
 // THE EMOTION CLASS THAT SETS AND GETS EMOTION PROPERTIES
 public class Emotion implements Serializable{
 
+    // INITIALIZE
     private String emotion;
     private String comment;
     private String date;
 
+    // CONSTRUCTOR
     Emotion(String emotion, String date, String comment) {
+
+        // SET
         this.emotion = emotion;
         this.date = date;
         this.comment = comment;
+
     }
 
+    // SETTER AND GETTER METHODS
     public void setComment(String comment){
         this.comment = comment;
     }

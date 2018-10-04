@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    // SAVES STATE WHEN APP CLOSES
+    // EXECUTE ON APP START
     public void onStart() {
 
         // SUPER CLASS CALL
@@ -98,29 +98,50 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // CREATES INTENT TO AND SENDS DATA
+    // CREATES INTENT TO ADD COMMENT
     public void addComment(View view) {
 
+        // GET BUTTON VIEW
         Button button = (Button) view;
+
+        // GET TEXT VALUE FROM BUTTON
         String buttonText = button.getText().toString();
+
+        // CREATE AN INTENT TO ADD COMMENT ACTIVITY
         Intent intent = new Intent(this, AddComment.class);
+
+        // PUT THE BUTTON TEXT INTO THE INTENT
         intent.putExtra(EXTRA_MESSAGE, buttonText);
+
+        // START ACTIVITY
         startActivityForResult(intent, TEXT_REQUEST1);
 
     }
 
+    // CREATES INTENT TO VIEW HISTORY
     public void viewHistory(View view) {
 
+        // CREATE AN INTENT TO VIEW HISTORY ACTIVITY
         Intent historyIntent = new Intent(this, ViewHistory.class);
+
+        // PUT THE EMOTION ARRAY INTO THE INTENT
         historyIntent.putExtra(EXTRA_MESSAGE, emotionArray);
+
+        // START ACTIVITY
         startActivityForResult(historyIntent, TEXT_REQUEST2);
 
     }
 
+    // CREATES INTENT TO VIEW COUNT
     public void viewCount(View view){
 
+        // CREATE AN INTENT TO VIEW COUNT ACTIVITY
         Intent countIntent = new Intent(this, ViewCount.class);
+
+         // PUT THE EMOTION ARRAY INTO THE INTENT
         countIntent.putExtra(EXTRA_MESSAGE, emotionArray);
+
+        // START ACTIVITY
         startActivity(countIntent);
 
     }

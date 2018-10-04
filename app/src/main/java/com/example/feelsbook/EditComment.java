@@ -22,9 +22,13 @@ public class EditComment extends AppCompatActivity {
     protected String newComment;
 
     @Override
+    // CREATES LAYOUT
     protected void onCreate(Bundle savedInstanceState) {
 
+        // SUPER CLASS CALL
         super.onCreate(savedInstanceState);
+
+        // SET LAYOUT FOR EDIT COMMENT
         setContentView(R.layout.activity_edit_comment);
 
     }
@@ -48,7 +52,7 @@ public class EditComment extends AppCompatActivity {
         emotionComment.setText(emotion.getComment());
     }
 
-        // RETURNS EDITED EMOTION DATA
+    // RETURNS EDITED EMOTION DATA
     public void returnEmotion(View view){
 
         // GETTING UPDATED EMOTION, DATE, AND COMMENT FROM LAYOUT
@@ -64,8 +68,14 @@ public class EditComment extends AppCompatActivity {
 
         // CREATE INTENT AND SEND TO VIEW HISTORY
         Intent updateIntent = new Intent();
+
+        // PUT NEW EMOTION INTO INTENT
         updateIntent.putExtra(EXTRA_MESSAGE, emotion);
+
+        // SEND INTENT
         setResult(RESULT_OK, updateIntent);
+
+        // END ACTIVITY
         finish();
 
     }
@@ -78,8 +88,14 @@ public class EditComment extends AppCompatActivity {
 
         // CREATE INTENT AND SEND TO VIEW HISTORY
         Intent deleteIntent = new Intent();
+
+        // PUT INDICATOR EMOTION INTO INTENT
         deleteIntent.putExtra(EXTRA_MESSAGE, emotion);
+
+        // SEND INTENT
         setResult(RESULT_OK, deleteIntent);
+
+        // END ACTIVITY
         finish();
 
     }

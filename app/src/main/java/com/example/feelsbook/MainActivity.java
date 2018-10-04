@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
 
+
 // PARENT ACTIVITY THAT DISPLAYS HOMEPAGE FUNCTIONALITY
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView added_record;
     public ArrayList<Emotion> emotionArray = new ArrayList<>();
     public ArrayList<Emotion> updatedArray = new ArrayList<>();
+    private SaveState savestate = new SaveState(this);
 
     @Override
     // CREATES LAYOUT
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         // SETS LAYOUT OF MAIN ACTIVITY
         setContentView(R.layout.activity_main);
+
+        // LOAD STATE IF APP IS RELOADED
+        emotionArray = savestate.loadFromFile();
 
     }
 
@@ -66,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
                     // ADD NEW EMOTION TO ARRAY
                     emotionArray.add(emotion);
 
+                    // SAVE STATE
+                    savestate.saveInFile(emotionArray);
+
                     // DISPLAY MESSAGE THAT EMOTION WAS SUCCESSFULLY ADDED
                     added_record.setVisibility(View.VISIBLE);
 
@@ -87,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
                 // SET THE EMOTION ARRAY AS THE ACTIVITY ARRAY
                 emotionArray = updatedArray;
 
+                // SAVE STATE
+                savestate.saveInFile(emotionArray);
                 break;
 
             // DEFAULT CASE
@@ -107,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
         // GET TEXT VALUE FROM BUTTON
         String buttonText = button.getText().toString();
 
+        // SAVE STATE
+        savestate.saveInFile(emotionArray);
+
         // CREATE AN INTENT TO ADD COMMENT ACTIVITY
         Intent intent = new Intent(this, AddComment.class);
 
@@ -121,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
     // CREATES INTENT TO VIEW HISTORY
     public void viewHistory(View view) {
 
+        // SAVE STATE
+        savestate.saveInFile(emotionArray);
+
         // CREATE AN INTENT TO VIEW HISTORY ACTIVITY
         Intent historyIntent = new Intent(this, ViewHistory.class);
 
@@ -134,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
 
     // CREATES INTENT TO VIEW COUNT
     public void viewCount(View view){
+
+        // SAVE STATE
+        savestate.saveInFile(emotionArray);
 
         // CREATE AN INTENT TO VIEW COUNT ACTIVITY
         Intent countIntent = new Intent(this, ViewCount.class);

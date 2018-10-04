@@ -3,14 +3,15 @@ package com.example.feelsbook;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
-
+// DISPLAYS EMOTION ARRAY AS A LIST VIEW PAGE
 public class ViewHistory extends AppCompatActivity {
 
     // INITIALIZE
@@ -18,6 +19,7 @@ public class ViewHistory extends AppCompatActivity {
     public static final int TEXT_REQUEST2 = 2;
     public int emotionPosition;
     public ArrayList<Emotion> emotions;
+    private SaveState savestate = new SaveState(this);
 
     @Override
     // CREATES LAYOUT
@@ -47,6 +49,9 @@ public class ViewHistory extends AppCompatActivity {
         // CREATE INSTANCE OF CUSTOM ADAPTER
         EmotionListAdapter adapter = new EmotionListAdapter(this, R.layout.adapter_view_layout, emotions);
 
+        // METHOD CALL TO SORT ARRAY LIST BY DATE
+        sortDate();
+
         // SET ADAPTER FOR LIST VIEW
         emotion_list.setAdapter(adapter);
 
@@ -56,6 +61,9 @@ public class ViewHistory extends AppCompatActivity {
             @Override
             // CREATE INTENT ON EMOTION CLICK
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // SAVE STATE
+                savestate.saveInFile(emotions);
 
                 // SET
                 emotionPosition = position;
@@ -102,6 +110,9 @@ public class ViewHistory extends AppCompatActivity {
 
                 }
 
+                // SAVE STATE
+                savestate.saveInFile(emotions);
+
                 // CREATE INTENT AND SEND TO MAIN ACTIVITY
                 Intent updateIntent = new Intent();
 
@@ -117,6 +128,24 @@ public class ViewHistory extends AppCompatActivity {
             }
 
         }
+
+    }
+
+    // SORTS THE ARRAY LIST BY ASCENDING DATE
+    public void sortDate(){
+
+        // COMPARES DATES OF EMOTION
+        Collections.sort(emotions, new Comparator<Emotion>() {
+
+            @Override
+            // COMPARES TWO EMOTIONS
+            public int compare(Emotion o1, Emotion o2) {
+
+                // RETURN
+                return o1.getDate().compareTo(o2.getDate());
+
+            }
+        });
 
     }
 

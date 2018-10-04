@@ -21,12 +21,6 @@ public class Emotion implements Serializable{
     }
 
     // SETTER AND GETTER METHODS
-    public void setComment(String comment){
-        this.comment = comment;
-    }
-    public void setEmotion(String emotion){
-        this.emotion = emotion;
-    }
     public void setDate(String date){
         this.date = date;
     }
